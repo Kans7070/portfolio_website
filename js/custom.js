@@ -81,10 +81,12 @@
 	$('.parallaxie').parallaxie();
 	
     // LOADER
-    $(window).load(function() {
-        $("#preloader").on(500).fadeOut();
-        $(".preloader").on(600).fadeOut("slow");
+    $(window).on('load', function() {
+        $("#preloader").fadeOut("slow");
     });
+    setTimeout(function() {
+        $("#preloader").fadeOut("slow");
+    }, 1200);
 
 	// Gallery Filter
         var Container = $('.container');

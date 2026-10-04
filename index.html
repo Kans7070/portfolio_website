@@ -761,7 +761,12 @@
           alert("Something went wrong. Please try again.");
         }
       });
+    $(window).on('load', function() {
+      $("#preloader").fadeOut(400);
     });
+    setTimeout(function() {
+      $("#preloader").fadeOut(400);
+    }, 1000);
   </script>
 
 </body>
