@@ -1,2 +1,335 @@
+/** Custom CSS Enhancements for Karshinas Kans Portfolio **/
 
-/** ADD YOUR AWESOME CODES HERE **/
+:root {
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --secondary-color: #1e293b;
+  --accent-color: #06b6d4;
+  --text-dark: #0f172a;
+  --text-muted: #64748b;
+  --bg-light: #f8fafc;
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+  --card-border-radius: 12px;
+}
+
+/* Global Polish */
+body {
+  font-family: 'Poppins', 'Inter', sans-serif;
+  color: #334155;
+  overflow-x: hidden;
+}
+
+/* Header & Banner Updates */
+.main-banner .heading h1 {
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.main-banner .heading p {
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cd-headline {
+  font-size: 2rem !important;
+  color: #3b82f6;
+}
+
+/* Section Titles */
+.section-title h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  position: relative;
+  margin-bottom: 15px;
+  color: #1e293b;
+}
+
+.section-title h3::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* Metrics Badges in About Section */
+.metrics-wrapper {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 25px 0;
+}
+
+.metric-item {
+  background: #f1f5f9;
+  border-left: 4px solid #3b82f6;
+  padding: 12px 18px;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 140px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease;
+}
+
+.metric-item:hover {
+  transform: translateY(-3px);
+  background: #e2e8f0;
+}
+
+.metric-num {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #2563eb;
+  line-height: 1.2;
+}
+
+.metric-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Timeline Polish */
+.timeline {
+  position: relative;
+  padding-left: 20px;
+  border-left: 2px solid #e2e8f0;
+  list-style: none;
+}
+
+.timeline > li {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.timeline > li::before {
+  content: '';
+  position: absolute;
+  left: -27px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+.timeline .title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #3b82f6;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.timeline .details h5 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.timeline .details small.fg-theme {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #64748b;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.exp-bullet-list {
+  padding-left: 18px;
+  margin-top: 10px;
+}
+
+.exp-bullet-list li {
+  font-size: 0.92rem;
+  color: #475569;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+/* Skill Cards */
+.skill-category-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 25px 0 15px 0;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.services-inner-box {
+  background: #ffffff;
+  padding: 20px 15px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.services-inner-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(59, 130, 246, 0.15);
+  border-color: #bfdbfe;
+}
+
+.ser-icon {
+  font-size: 2.8rem;
+  color: #3b82f6;
+  margin-bottom: 8px;
+}
+
+.skill-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #334155;
+  margin-top: 6px;
+}
+
+/* Portfolio Projects Styling */
+.filter-button-group button {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  padding: 8px 18px;
+  margin: 4px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.filter-button-group button.active,
+.filter-button-group button:hover {
+  background: #3b82f6;
+  color: #ffffff;
+  border-color: #3b82f6;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.gallery-single {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.gallery-single:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.project-card-body {
+  padding: 18px 20px;
+  background: #ffffff;
+}
+
+.project-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.project-card-desc {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.tech-tag-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tech-tag {
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #dbeafe;
+}
+
+/* Contact Info Cards */
+.contact-info-card {
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.contact-info-icon {
+  width: 50px;
+  height: 50px;
+  background: #eff6ff;
+  color: #3b82f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.contact-info-text h6 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 2px;
+  font-weight: 700;
+}
+
+.contact-info-text p {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+}
+
+.contact-info-text a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.contact-info-text a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .cd-headline {
+    font-size: 1.4rem !important;
+  }
+
+  .metrics-wrapper {
+    flex-direction: column;
+  }
+
+  .timeline {
+    padding-left: 15px;
+  }
+}
