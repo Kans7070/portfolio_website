@@ -459,21 +459,24 @@ html, body {
 }
 
 /* Timeline Polish for Experience & Education */
-.timeline {
+.timeline,
+ul.timeline {
   position: relative;
   padding-left: 20px;
-  border-left: 2px solid rgba(59, 130, 246, 0.3);
+  border-left: 2px solid rgba(59, 130, 246, 0.4) !important;
   list-style: none;
 }
 
-.timeline > li {
+.timeline > li,
+.timeline li {
   position: relative;
   margin-bottom: 30px;
   visibility: visible !important;
   opacity: 1 !important;
 }
 
-.timeline > li::before {
+.timeline > li::before,
+.timeline li::before {
   content: '';
   position: absolute;
   left: -27px;
@@ -481,54 +484,70 @@ html, body {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #3b82f6;
-  box-shadow: 0 0 12px #3b82f6;
+  background: #3b82f6 !important;
+  box-shadow: 0 0 12px #3b82f6 !important;
+  border: none !important;
 }
 
-.timeline .title {
+.timeline .title,
+.timeline li .title {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #38bdf8;
-  margin-bottom: 4px;
+  color: #60a5fa !important;
+  background: rgba(30, 41, 59, 0.8) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  border-radius: 20px !important;
+  padding: 6px 16px !important;
+  display: inline-block;
+  margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.timeline .details {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 22px;
-  border-radius: 14px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
+.timeline .details,
+.timeline li .details {
+  background: rgba(15, 23, 42, 0.75) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 22px !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.3s ease !important;
   visibility: visible !important;
   opacity: 1 !important;
 }
 
-.timeline .details:hover {
-  border-color: rgba(59, 130, 246, 0.4);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.15);
+.timeline .details:hover,
+.timeline li .details:hover {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.15) !important;
 }
 
-.timeline .details h5 {
+.timeline .details h5,
+.timeline li .details h5 {
   font-size: 1.3rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #ffffff !important;
   margin-bottom: 2px;
 }
 
-.timeline .details small.fg-theme {
+.timeline .details small.fg-theme,
+.timeline li .details small,
+.timeline .details small {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #94a3b8;
+  color: #94a3b8 !important;
   display: block;
   margin-bottom: 10px;
 }
 
-.timeline .details p {
-  color: #cbd5e1;
+.timeline .details p,
+.timeline li .details p,
+.timeline .details li,
+.timeline li .details li {
+  color: #cbd5e1 !important;
 }
 
 .exp-bullet-list {

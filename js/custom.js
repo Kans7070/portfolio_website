@@ -6,63 +6,80 @@
     "use strict";
 
 	
-	// Smooth scrolling using jQuery easing
-	  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
-		if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-		  var target = $(this.hash);
-		  target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-		  if (target.length) {
-			$('html, body').animate({
-			  scrollTop: (target.offset().top - 54)
-			}, 1000, "easeInOutExpo");
-			return false;
-		  }
-		}
-	  });
-	
-    // Closes responsive menu when a scroll trigger link is clicked
-	  $('.js-scroll-trigger').click(function() {
-		$('.navbar-collapse').collapse('hide');
-	  });
+	var isScrollingManual = false;
 
-	// Dynamic Scrollspy Viewport Highlighting
+	function setActiveNav(targetHash) {
+		$('#mainNav .nav-link').removeClass('active');
+		$('#mainNav .nav-item').removeClass('active');
+		var $link = $('#mainNav .nav-link[href="' + targetHash + '"]');
+		if ($link.length) {
+			$link.addClass('active');
+			$link.closest('.nav-item').addClass('active');
+		}
+	}
+
 	function updateActiveNav() {
-		var scrollPos = $(window).scrollTop() + 110;
+		if (isScrollingManual) return;
+
+		var scrollTop = $(window).scrollTop();
 		var windowHeight = $(window).height();
 		var docHeight = $(document).height();
 
-		// Bottom of page check -> force active to #contact
-		if ($(window).scrollTop() + windowHeight >= docHeight - 40) {
-			$('#mainNav .nav-link').removeClass('active');
-			$('#mainNav .nav-item').removeClass('active');
-			var contactLink = $('#mainNav .nav-link[href="#contact"]');
-			contactLink.addClass('active');
-			contactLink.parent('.nav-item').addClass('active');
+		// Bottom of page -> force active to #contact
+		if (scrollTop + windowHeight >= docHeight - 40) {
+			setActiveNav('#contact');
+			return;
+		}
+
+		// Top of page -> force active to #home
+		if (scrollTop < 120) {
+			setActiveNav('#home');
 			return;
 		}
 
 		var sections = ['#home', '#about', '#experience', '#services', '#portfolio', '#contact'];
 		var currentSection = '#home';
+		var scrollCheck = scrollTop + 120; // offset for fixed navbar
 
-		sections.forEach(function(secId) {
-			var $sec = $(secId);
+		for (var i = 0; i < sections.length; i++) {
+			var $sec = $(sections[i]);
 			if ($sec.length) {
-				var top = $sec.offset().top;
-				var height = $sec.outerHeight();
-				if (scrollPos >= top && scrollPos < top + height) {
-					currentSection = secId;
+				var secTop = $sec.offset().top;
+				if (scrollCheck >= secTop - 30) {
+					currentSection = sections[i];
 				}
 			}
-		});
+		}
 
-		$('#mainNav .nav-link').removeClass('active');
-		$('#mainNav .nav-item').removeClass('active');
-		var activeLink = $('#mainNav .nav-link[href="' + currentSection + '"]');
-		activeLink.addClass('active');
-		activeLink.parent('.nav-item').addClass('active');
+		setActiveNav(currentSection);
 	}
 
 	$(window).on('scroll resize load', updateActiveNav);
+
+	// Smooth scrolling on navbar link click
+	$('a.js-scroll-trigger[href*="#"]:not([href="#"])').off('click').on('click', function(e) {
+		if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+			var target = $(this.hash);
+			target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+			if (target.length) {
+				e.preventDefault();
+				var targetHash = this.hash;
+				var targetOffset = targetHash === '#home' ? 0 : Math.max(0, target.offset().top - 80);
+				
+				isScrollingManual = true;
+				setActiveNav(targetHash);
+				$('.navbar-collapse').collapse('hide');
+
+				$('html, body').stop().animate({
+					scrollTop: targetOffset
+				}, 500, 'swing', function() {
+					isScrollingManual = false;
+					updateActiveNav();
+				});
+				return false;
+			}
+		}
+	});
 
 	// Collapse Navbar
 	  var navbarCollapse = function() {
