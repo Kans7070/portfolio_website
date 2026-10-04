@@ -8,6 +8,26 @@
 	
 	var isScrollingManual = false;
 
+	function getNavOffset() {
+		var $nav = $('#mainNav');
+		var $menu = $('#navbarResponsive');
+		var navHeight = $nav.outerHeight() || 80;
+
+		if ($menu.hasClass('show') || $menu.hasClass('collapsing')) {
+			navHeight -= $menu.outerHeight() || 0;
+		}
+
+		return Math.max(navHeight, 60);
+	}
+
+	function getScrollTop() {
+		return Math.max(
+			window.pageYOffset || 0,
+			document.documentElement.scrollTop || 0,
+			document.body.scrollTop || 0
+		);
+	}
+
 	function setActiveNav(targetHash) {
 		$('#mainNav .nav-link').removeClass('active');
 		$('#mainNav .nav-item').removeClass('active');
@@ -21,31 +41,22 @@
 	function updateActiveNav() {
 		if (isScrollingManual) return;
 
-		var scrollTop = $(window).scrollTop();
-		var windowHeight = $(window).height();
-		var docHeight = $(document).height();
+		var sections = ['#home', '#about', '#experience', '#services', '#portfolio', '#contact'];
+		var currentSection = '#home';
+		var navCheck = getNavOffset() + 40;
+		var scrollBottom = getScrollTop() + window.innerHeight;
+		var pageHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
 
-		// Bottom of page -> force active to #contact
-		if (scrollTop + windowHeight >= docHeight - 40) {
+		if (scrollBottom >= pageHeight - 40) {
 			setActiveNav('#contact');
 			return;
 		}
 
-		// Top of page -> force active to #home
-		if (scrollTop < 120) {
-			setActiveNav('#home');
-			return;
-		}
-
-		var sections = ['#home', '#about', '#experience', '#services', '#portfolio', '#contact'];
-		var currentSection = '#home';
-		var scrollCheck = scrollTop + 120; // offset for fixed navbar
-
 		for (var i = 0; i < sections.length; i++) {
-			var $sec = $(sections[i]);
-			if ($sec.length) {
-				var secTop = $sec.offset().top;
-				if (scrollCheck >= secTop - 30) {
+			var sec = document.querySelector(sections[i]);
+			if (sec) {
+				var rect = sec.getBoundingClientRect();
+				if (rect.top <= navCheck) {
 					currentSection = sections[i];
 				}
 			}
@@ -54,7 +65,7 @@
 		setActiveNav(currentSection);
 	}
 
-	$(window).on('scroll resize load', updateActiveNav);
+	$(window).add('html, body').on('scroll resize load', updateActiveNav);
 
 	// Smooth scrolling on navbar link click
 	$('a.js-scroll-trigger[href*="#"]:not([href="#"])').off('click').on('click', function(e) {
@@ -64,20 +75,34 @@
 			if (target.length) {
 				e.preventDefault();
 				var targetHash = this.hash;
-				var targetOffset = targetHash === '#home' ? 0 : Math.max(0, target.offset().top - 80);
+				var targetOffset = targetHash === '#home' ? 0 : Math.max(0, getScrollTop() + target[0].getBoundingClientRect().top - getNavOffset());
 				
 				isScrollingManual = true;
 				setActiveNav(targetHash);
-				$('.navbar-collapse').collapse('hide');
+				if ($.fn.collapse) {
+					$('.navbar-collapse').collapse('hide');
+				} else {
+					$('.navbar-collapse').removeClass('show');
+					$('.navbar-toggler').addClass('collapsed').attr('aria-expanded', 'false');
+				}
 
 				$('html, body').stop().animate({
 					scrollTop: targetOffset
-				}, 500, 'swing', function() {
+				}, 500, 'swing').promise().done(function() {
 					isScrollingManual = false;
 					updateActiveNav();
 				});
 				return false;
 			}
+		}
+	});
+
+	$('.navbar-toggler').on('click', function() {
+		var $target = $($(this).attr('data-target'));
+		if (!$.fn.collapse && $target.length) {
+			var isOpen = $target.hasClass('show');
+			$target.toggleClass('show', !isOpen);
+			$(this).toggleClass('collapsed', isOpen).attr('aria-expanded', String(!isOpen));
 		}
 	});
 

@@ -160,6 +160,44 @@ html, body {
   border: 1px solid rgba(59, 130, 246, 0.4) !important;
 }
 
+#mainNav .navbar-toggler {
+  border-color: rgba(148, 163, 184, 0.45);
+  color: #ffffff;
+  padding: 8px 10px;
+}
+
+#mainNav .navbar-toggler:focus {
+  outline: 2px solid rgba(56, 189, 248, 0.55);
+  outline-offset: 3px;
+}
+
+@media (max-width: 991px) {
+  #mainNav {
+    padding: 12px 0;
+  }
+
+  #mainNav .navbar-brand {
+    max-width: calc(100% - 58px);
+    white-space: nowrap;
+  }
+
+  #navbarResponsive {
+    margin-top: 12px;
+    padding: 10px 0 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  #mainNav .navbar-nav {
+    gap: 6px;
+  }
+
+  #mainNav .nav-link {
+    display: block;
+    padding: 10px 14px !important;
+    border-radius: 8px;
+  }
+}
+
 /* Hero Banner Layout & Alignment */
 .main-banner {
   position: relative;
