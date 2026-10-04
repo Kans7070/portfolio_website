@@ -25,11 +25,44 @@
 		$('.navbar-collapse').collapse('hide');
 	  });
 
-	// Activate scrollspy to add active class to navbar items on scroll
-	  $('body').scrollspy({
-		target: '#mainNav',
-		offset: 56
-	  });
+	// Dynamic Scrollspy Viewport Highlighting
+	function updateActiveNav() {
+		var scrollPos = $(window).scrollTop() + 110;
+		var windowHeight = $(window).height();
+		var docHeight = $(document).height();
+
+		// Bottom of page check -> force active to #contact
+		if ($(window).scrollTop() + windowHeight >= docHeight - 40) {
+			$('#mainNav .nav-link').removeClass('active');
+			$('#mainNav .nav-item').removeClass('active');
+			var contactLink = $('#mainNav .nav-link[href="#contact"]');
+			contactLink.addClass('active');
+			contactLink.parent('.nav-item').addClass('active');
+			return;
+		}
+
+		var sections = ['#home', '#about', '#experience', '#services', '#portfolio', '#contact'];
+		var currentSection = '#home';
+
+		sections.forEach(function(secId) {
+			var $sec = $(secId);
+			if ($sec.length) {
+				var top = $sec.offset().top;
+				var height = $sec.outerHeight();
+				if (scrollPos >= top && scrollPos < top + height) {
+					currentSection = secId;
+				}
+			}
+		});
+
+		$('#mainNav .nav-link').removeClass('active');
+		$('#mainNav .nav-item').removeClass('active');
+		var activeLink = $('#mainNav .nav-link[href="' + currentSection + '"]');
+		activeLink.addClass('active');
+		activeLink.parent('.nav-item').addClass('active');
+	}
+
+	$(window).on('scroll resize load', updateActiveNav);
 
 	// Collapse Navbar
 	  var navbarCollapse = function() {
