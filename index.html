@@ -15,6 +15,11 @@
   <meta name="keywords" content="Karshinas Kans, Senior Software Engineer, Full Stack Engineer, Next.js, TypeScript, Node.js, Fastify, Express.js, PostgreSQL, Portfolio">
   <meta name="author" content="Karshinas Kans">
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <!-- Ajax -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- Programming language icons (Devicon) -->
@@ -79,19 +84,53 @@
   </nav>
 
   <!-- Banner / Hero Section -->
-  <section id="home" class="main-banner parallaxie" style="background: url('uploads/banner-01.jpg')">
-    <div class="heading">
-      <h1>hello i'm Karshinas Kans</h1>
-      <p>Senior Software Engineer | Full Stack Engineer with 4+ years of production experience building high-scale web applications.</p>
+  <section id="home" class="main-banner">
+    <div class="hero-content-wrapper">
+      
+      <!-- Status Badge -->
+      <div class="status-badge-container">
+        <span class="status-dot"></span> Open for Senior Full-Stack Roles
+      </div>
+
+      <div class="hero-title-greeting">Hello, I'm</div>
+      <h1 class="hero-main-title">
+        <span class="gradient-text-accent">Karshinas Kans</span>
+      </h1>
+
+      <p class="hero-sub-text">
+        Senior Software Engineer & Full Stack Architect with 4+ years of production experience crafting high-throughput web applications with Next.js, TypeScript, Fastify & PostgreSQL.
+      </p>
+
       <h3 class="cd-headline clip is-full-width">
-        <span>I'm a </span>
+        <span>Specializing in </span>
         <span class="cd-words-wrapper">
-          <b class="is-visible">Senior Software Engineer</b>
-          <b>Full Stack Engineer</b>
-          <b>Next.js & TypeScript Expert</b>
-          <b>Backend & API Specialist</b>
+          <b class="is-visible">Senior Software Engineering</b>
+          <b>Full Stack Architecture</b>
+          <b>Next.js & TypeScript Apps</b>
+          <b>High-Performance REST APIs</b>
         </span>
       </h3>
+
+      <!-- Quick Tech Pills -->
+      <div class="hero-tech-pills">
+        <span class="hero-pill-item"><i class="devicon-nextjs-original"></i> Next.js</span>
+        <span class="hero-pill-item"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
+        <span class="hero-pill-item"><i class="devicon-react-original colored"></i> React.js</span>
+        <span class="hero-pill-item"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
+        <span class="hero-pill-item"><i class="devicon-fastify-plain"></i> Fastify</span>
+        <span class="hero-pill-item"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="hero-btn-group">
+        <a href="#portfolio" class="btn-hero-primary js-scroll-trigger">
+          <i class="fa fa-layer-group"></i> Explore Portfolio
+        </a>
+        <a href="Karshinas Kans resume.pdf" target="_blank" class="btn-hero-secondary">
+          <i class="fa fa-file-download"></i> Download CV
+        </a>
+      </div>
+
     </div>
   </section>
 
