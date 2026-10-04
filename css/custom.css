@@ -813,9 +813,8 @@ html, body {
   background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
   color: #ffffff !important;
   font-weight: 700;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 25px;
+  border: none !important;
+  border-radius: 25px !important;
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
   transition: all 0.3s ease;
 }
@@ -823,6 +822,56 @@ html, body {
 .sim-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(59, 130, 246, 0.6);
+}
+
+/* Pixel-perfect alignment for btn-hover-new in initial and hover states */
+.btn-hover-new {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 50px !important;
+  padding: 0 32px !important;
+  line-height: 1 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.btn-hover-new span {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  line-height: 1 !important;
+  text-align: center !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-hover-new::after {
+  content: attr(data-text);
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  text-align: center !important;
+  opacity: 0;
+  transform: translate(-30%, 0);
+  transition: all 0.3s ease !important;
+}
+
+.btn-hover-new:hover > span {
+  opacity: 0 !important;
+  transform: translateY(40px) !important;
+}
+
+.btn-hover-new:hover::after {
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
 }
 
 /* Footer Dark Polish */
