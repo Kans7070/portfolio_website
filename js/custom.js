@@ -80,15 +80,7 @@
     $('.heading').height( $(window).height() );
 	$('.parallaxie').parallaxie();
 	
-    // LOADER
-    $(window).on('load', function() {
-        $("#preloader").fadeOut("slow");
-    });
-    setTimeout(function() {
-        $("#preloader").fadeOut("slow");
-    }, 1200);
-
-	// Gallery Filter
+    // Gallery Filter
         var Container = $('.container');
         Container.imagesLoaded(function () {
             var portfolio = $('.gallery-menu');
